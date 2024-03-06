@@ -2,11 +2,11 @@ import csv
 from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
+from project import crud
 from validation import *
 from registeration import registeration_form
 
-root = Tk()
-login = Toplevel(root)
+login = Tk()
 login.title("Login Form")
 login.geometry("850x500+300+100")
 login['bg'] = '#06283D'  
@@ -14,13 +14,14 @@ login['bg'] = '#06283D'
 def back_to_register():
     registeration_form()
     login.destroy()
-    
 
 def login_form():   
     def auth():
         users = csv.reader(open('users.csv', "r"), delimiter=",")
         for row in users:
             if email_input.get() == row[2] and password_input.get() == row[4]:
+                login.destroy()
+                crud()
                 return messagebox.showinfo("loggedin","login successfully")
             return messagebox.showerror("error","Wrong password or email")
     main_font = Font(family="Times",slant="italic",size="18")

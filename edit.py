@@ -5,13 +5,13 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
 
-edit = Tk()
-edit.title("Registeration Form")
-edit.geometry("850x500+300+100")
-edit['bg'] = '#06283D'
-main_font = Font(family="Times",slant="italic",size="18")
 
 def edition():
+    edit = Tk()
+    edit.title("Registeration Form")
+    edit.geometry("850x500+300+100")
+    edit['bg'] = '#06283D'
+    main_font = Font(family="Times",slant="italic",size="18")
     def update():
         filename = 'projects.csv'
         tempfile = NamedTemporaryFile(mode='w', delete=False)
@@ -62,4 +62,3 @@ def edition():
     edit.mainloop()
 
 
-edition()

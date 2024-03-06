@@ -4,13 +4,13 @@ from tkinter import messagebox
 from tkinter.font import Font
 from validation import *
 
-register = Tk()
-register.title("Registeration Form")
-register.geometry("850x500+300+100")
-register['bg'] = '#06283D'
-main_font = Font(family="Times",slant="italic",size="18")
-
 def registeration_form():
+    register = Tk()
+    register.title("Registeration Form")
+    register.geometry("850x500+300+100")
+    register['bg'] = '#06283D'
+    main_font = Font(family="Times",slant="italic",size="18")
+
     def validate_data():
             if not validate_name(first_name_input.get()) or not validate_name(last_name_input.get()):
                 return messagebox.showerror("Validation Error", "invalid name")
