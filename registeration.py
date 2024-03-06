@@ -1,16 +1,16 @@
 import csv
-from fileinput import filename
-import json
-from os import path
 from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
 from validation import *
 
-
+register = Tk()
+register.title("Registeration Form")
+register.geometry("850x500+300+100")
+register['bg'] = '#06283D'
+main_font = Font(family="Times",slant="italic",size="18")
 
 def registeration_form():
-    fields = ["first name","last name", "email","password","phone"]
     def validate_data():
             if not validate_name(first_name_input.get()) or not validate_name(last_name_input.get()):
                 return messagebox.showerror("Validation Error", "invalid name")
@@ -31,11 +31,7 @@ def registeration_form():
             writer.writerow(data)
         messagebox.showinfo("registeration Status","registered succesfully")      
 
-    register = Tk()
-    register.title("Registeration Form")
-    register.geometry("850x500+300+100")
-    register['bg'] = '#06283D'
-    main_font = Font(family="Times",slant="italic",size="18")
+    
     first_name_label = Label(register,text="Enter First Name",font=main_font)
     first_name_label.place(x="100",y="50")
     first_name_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font,borderwidth="2")
@@ -63,6 +59,3 @@ def registeration_form():
     register_btn = Button(register, text="Register",width="12", fg="black", bg="#EEDFCC", font=main_font, command=store_data)
     register_btn.place(x="320",y="310")
     register.mainloop()
-
-
-registeration_form()

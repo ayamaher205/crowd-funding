@@ -56,3 +56,4 @@ edit.place(x="250",y="100")
 search = Button(root, text="search for project",width="14", fg="black", bg="#EEDFCC", font=main_font)
 search.place(x="120",y="180")
 root.mainloop()
+

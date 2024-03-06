@@ -7,7 +7,7 @@ from tkinter.font import Font
 from validation import validate_date
     
 def store_data():
-    if not validate_date(start_date_input.get()) or not validate_date(end_date_input.get()):
+    if not validate_date(start_date_input.get()) is None or not validate_date(end_date_input.get()) is None:
           return messagebox.showerror("validation Error","Incorrect data format, date should be YYYY-MM-DD")
     data = [title_input.get(),details_input.get(),target_input.get(),start_date_input.get(),end_date_input.get()]
     with open('projects.csv', 'a') as file:

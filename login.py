@@ -3,11 +3,18 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
 from validation import *
+from registeration import registeration_form
 
-login = Tk()
+root = Tk()
+login = Toplevel(root)
 login.title("Login Form")
 login.geometry("850x500+300+100")
 login['bg'] = '#06283D'  
+
+def back_to_register():
+    registeration_form()
+    login.destroy()
+    
 
 def login_form():   
     def auth():
@@ -27,8 +34,6 @@ def login_form():
     password_input.place(x="330",y="90")
     login_btn = Button(login, text="Login",width="12", fg="black", bg="#EEDFCC", font=main_font, command=auth)
     login_btn.place(x="350",y="150")
-    register_btn = Button(login, text="Register",width="12", fg="black", bg="#EEDFCC", font=main_font)
+    register_btn = Button(login, text="Register",width="12", fg="black", bg="#EEDFCC", font=main_font,command=back_to_register)
     register_btn.place(x="350",y="200")
     login.mainloop()
-    return email_input.get()
-login_form()
