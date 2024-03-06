@@ -10,25 +10,25 @@ from search import search_project
 from view import view
 
 
-def crud():
+def crud(user):
     def creation():
         root.destroy()
-        create_project()
+        create_project(user)
 
     def edition_project():
         root.destroy()
-        edition()
+        edition(user)
 
     def deletion_project():
         root.destroy()
-        deletion()
+        deletion(user)
     def search():
         root.destroy()
-        search_project()
+        search_project(user)
 
     def show_projects():
         root.destroy()
-        view()
+        view(user)
     root = Tk()
     root.title("Projects profile")
     root.geometry("850x500+300+100")

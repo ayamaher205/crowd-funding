@@ -6,7 +6,7 @@ from tkinter import messagebox
 from tkinter.font import Font
 
 
-def edition():
+def edition(user):
     edit = Tk()
     edit.title("Registeration Form")
     edit.geometry("850x500+300+100")
@@ -17,14 +17,14 @@ def edition():
         tempfile = NamedTemporaryFile(mode='w', delete=False)
 
         fields = ['title', 'details', 'target', 'start date', 'end date']
-
         with open(filename, 'r') as csvfile, tempfile:
             reader = csv.DictReader(csvfile, fieldnames=fields)
             writer = csv.DictWriter(tempfile, fieldnames=fields)
             for row in reader:
                 if row['title'] == str(title_input.get()):
-                    print('updating row', row['title'])
-                    row['title'], row['details'], row['target'],row['start date'], row['end date'] = new_title_input.get(), details_input.get(), target_input.get(),start_date_input.get(), end_date_input.get()
+                    if row['owner'] == user:
+                        print('updating row', row['title'])
+                        row['title'], row['details'], row['target'],row['start date'], row['end date'] = new_title_input.get(), details_input.get(), target_input.get(),start_date_input.get(), end_date_input.get()
                 row = {'title': row['title'], 'details': row['details'], 'target': row['target'], 'start date': row['start date'],'end date': row['end date']}
                 writer.writerow(row)
         shutil.move(tempfile.name, filename)
@@ -60,5 +60,3 @@ def edition():
     add = Button(edit, text="edit",width="12", fg="black", bg="#EEDFCC", font=main_font,command=update)
     add.place(x="320",y="350") 
     edit.mainloop()
-
-

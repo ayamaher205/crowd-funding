@@ -2,15 +2,17 @@ import csv
 from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
-def search_project():
+def search_project(user):
     def search_for_project():
         projects = csv.reader(open('projects.csv', "r"), delimiter=",")
         for row in projects:
-            if title_input.get() == row[0]:
-                return Label(search, text=row, font=main_font).place(x="100",y="200")
+            if row['owner'] == user:
+                if title_input.get() == row[0]:
+                    return Label(search, text=row, font=main_font).place(x="100",y="200")
+                return messagebox.showerror("authorization error","you aren't allowed")
         return messagebox.showerror("error","there is no project with this title")
     search = Tk()
-    search.title("Registeration Form")
+    search.title("Search Form")
     search.geometry("850x500+300+100")
     search['bg'] = '#06283D'
     main_font = Font(family="Times",slant="italic",size="18")

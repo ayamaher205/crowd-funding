@@ -24,4 +24,7 @@ def validate_date(date_text):
             datetime.date.fromisoformat(date_text)
     except ValueError:
             return False 
-    
+
+def validate_target(target):
+    if not target.isnumeric():
+        return False

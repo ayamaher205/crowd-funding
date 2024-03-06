@@ -3,14 +3,14 @@ import json
 from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
-def view():
+def view(user):
     def show_project():
         projects = csv.DictReader(open('projects.csv', "r"), delimiter=",")
-        line = 0
         for row in projects:    
-            Label(show, text=row, font=main_font).place(x="100",y="200")
+            if row['owner'] == user:
+                Label(show, text=row, font=main_font).place(x="100",y="200")
     show = Tk()
-    show.title("Registeration Form")
+    show.title("Show Form")
     show.geometry("1200x500+100+100")
     show['bg'] = '#06283D'
     main_font = Font(family="Times",slant="italic",size="18")

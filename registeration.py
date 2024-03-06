@@ -24,38 +24,41 @@ def registeration_form():
                 return messagebox.showerror("Validation Error", "invalid phone number")
 
     def store_data():
-     if validate_data() is None:
-        data = [first_name_input.get(),last_name_input.get(),email_input.get(),password_input.get(),phone_input.get()]
-        with open('users.csv', 'a') as file:
-            writer = csv.writer(file)
-            writer.writerow(data)
-        messagebox.showinfo("registeration Status","registered succesfully")      
-
+        if validate_data() is None:
+            data = [first_name_input.get(),last_name_input.get(),email_input.get(),password_input.get(),phone_input.get()]
+            with open('users.csv', 'a') as file:
+                writer = csv.writer(file)
+                writer.writerow(data)
+            messagebox.showinfo("registeration Status","registered succesfully")
+            register.destroy()
+            return login_form()
     
     first_name_label = Label(register,text="Enter First Name",font=main_font)
     first_name_label.place(x="100",y="50")
-    first_name_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font,borderwidth="2")
+    first_name_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font)
     first_name_input.place(x="320",y="50")
     last_name_label = Label(register,text="Enter Last Name",font=main_font)
     last_name_label.place(x="100",y="90")
-    last_name_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font,borderwidth="2")
+    last_name_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font)
     last_name_input.place(x="320",y="90")
     email_label = Label(register,text="Enter Email",font=main_font)
     email_label.place(x="100",y="130")
-    email_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font,borderwidth="2")
+    email_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font)
     email_input.place(x="320",y="130")
     password_label = Label(register,text="Enter Password",font=main_font)
     password_label.place(x="100",y="170")
-    password_input = Entry(register,width="20",show="*",fg="#080808",bg="#EEDFCC",font=main_font,borderwidth="2")
+    password_input = Entry(register,width="20",show="*",fg="#080808",bg="#EEDFCC",font=main_font)
     password_input.place(x="320",y="170")
     confirm_password_label = Label(register,text="Confirm Password",font=main_font)
     confirm_password_label.place(x="100",y="210")
-    confirm_password_input = Entry(register,show="*",width="20",fg="#080808",bg="#EEDFCC",font=main_font,borderwidth="2")
+    confirm_password_input = Entry(register,show="*",width="20",fg="#080808",bg="#EEDFCC",font=main_font)
     confirm_password_input.place(x="320",y="210")
     phone_label = Label(register,text="Enter Mobile Phone",font=main_font)
     phone_label.place(x="100",y="250")
-    phone_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font,borderwidth="2")
+    phone_input = Entry(register,width="20",fg="#080808",bg="#EEDFCC",font=main_font)
     phone_input.place(x="320",y="250")
     register_btn = Button(register, text="Register",width="12", fg="black", bg="#EEDFCC", font=main_font, command=store_data)
     register_btn.place(x="320",y="310")
     register.mainloop()
+
+from login import *

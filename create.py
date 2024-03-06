@@ -3,13 +3,15 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
 
-from validation import validate_date
-    
-def create_project():            
+from validation import *
+
+def create_project(user):            
       def store_data():
             if not validate_date(start_date_input.get()) is None or not validate_date(end_date_input.get()) is None:
                   return messagebox.showerror("validation Error","Incorrect data format, date should be YYYY-MM-DD")
-            data = [title_input.get(),details_input.get(),target_input.get(),start_date_input.get(),end_date_input.get()]
+            if not validate_target(target_input.get()) is None:
+                  return messagebox.showerror("validation Error", )
+            data = [title_input.get(),details_input.get(),target_input.get(),start_date_input.get(),end_date_input.get(),user]
             with open('projects.csv', 'a') as file:
                         writer = csv.writer(file)
                         writer.writerow(data)
