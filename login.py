@@ -20,10 +20,10 @@ def login_form():
         users = csv.reader(open('users.csv', "r"), delimiter=",")
         user = email_input.get() 
         for row in users:
-            if email_input.get() == row[2] and password_input.get() == row[4]:
+            if email_input.get() == row[2] and password_input.get() == row[3]:
                 login.destroy()
                 return crud(user)
-            return messagebox.showerror("error","Wrong password or email")
+        return messagebox.showerror("error","Wrong password or email")
     main_font = Font(family="Times",slant="italic",size="18")
     email_label = Label(login,text="Enter Email",font=main_font)
     email_label.place(x="150",y="50")

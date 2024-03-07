@@ -22,6 +22,7 @@ def crud(user):
     def deletion_project():
         root.destroy()
         deletion(user)
+        
     def search():
         root.destroy()
         search_project(user)
