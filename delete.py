@@ -23,7 +23,7 @@ def deletion(user):
                     return messagebox.showerror("Error", "project not exist in your projects")
             return messagebox.showerror("authentication","you aren't allowed")
     delete = Tk()
-    delete.title("Registeration Form")
+    delete.title("Delete Project")
     delete.geometry("850x500+300+100")
     delete['bg'] = '#06283D'
     main_font = Font(family="Times",slant="italic",size="18")

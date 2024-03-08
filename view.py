@@ -1,16 +1,25 @@
 import csv
-import json
 from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
 def view(user):
     def show_project():
+        r=50
         projects = csv.DictReader(open('projects.csv', "r"), delimiter=",")
         for row in projects:    
             if row['owner'] == user:
-                Label(show, text=row, font=main_font).place(x="100",y="200")
+                r+=40
+                Label(show, text=row['title'], font=main_font).place(x="100",y=r)
+                r+=40
+                Label(show, text=row['details'], font=main_font).place(x="100",y=r)
+                r+=40
+                Label(show, text=row['target'], font=main_font).place(x="100",y=r)
+                r+=40
+                Label(show, text=row['start date'], font=main_font).place(x="100",y=r)
+                r+=40
+                Label(show, text=row['end date'], font=main_font).place(x="100",y=r)
     show = Tk()
-    show.title("Show Form")
+    show.title("Projects")
     show.geometry("1200x500+100+100")
     show['bg'] = '#06283D'
     main_font = Font(family="Times",slant="italic",size="18")

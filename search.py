@@ -12,7 +12,7 @@ def search_project(user):
                 return messagebox.showerror("authorization error","you aren't allowed")
         return messagebox.showerror("error","there is no project with this title")
     search = Tk()
-    search.title("Search Form")
+    search.title("Search For Project")
     search.geometry("850x500+300+100")
     search['bg'] = '#06283D'
     main_font = Font(family="Times",slant="italic",size="18")

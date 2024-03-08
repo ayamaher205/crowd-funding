@@ -16,7 +16,7 @@ def create_project(user):
                         writer = csv.writer(file)
                         writer.writerow(data)
       create = Tk()
-      create.title("Registeration Form")
+      create.title("Create Project")
       create.geometry("850x500+300+100")
       create['bg'] = '#06283D'
       main_font = Font(family="Times",slant="italic",size="18")

@@ -8,7 +8,7 @@ from tkinter.font import Font
 
 def edition(user):
     edit = Tk()
-    edit.title("Registeration Form")
+    edit.title("Update Project")
     edit.geometry("850x500+300+100")
     edit['bg'] = '#06283D'
     main_font = Font(family="Times",slant="italic",size="18")
