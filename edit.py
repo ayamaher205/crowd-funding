@@ -1,6 +1,6 @@
 from tempfile import NamedTemporaryFile
-import shutil
 import csv
+from csv import *
 from tkinter import *
 from tkinter import messagebox
 from tkinter.font import Font
@@ -14,20 +14,32 @@ def edition(user):
     main_font = Font(family="Times",slant="italic",size="18")
     def update():
         filename = 'projects.csv'
-        tempfile = NamedTemporaryFile(mode='w', delete=False)
+        updated = False
+        
+        with open(filename, 'r', newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            projects = list(reader)
+        
+        for project in projects:
+            if project['title'] == title_input.get() and project['owner'] == user:
+                project['title'] = project['title'] if new_title_input.get().strip()== '' else new_title_input.get().strip()
+                project['details'] = details_input.get().strip() if details_input.get().strip()!='' else project['details']
+                project['target'] = target_input.get().strip() if target_input.get().strip() != '' else project['target']
+                project['start date'] = start_date_input.get().strip() if start_date_input.get().strip() != '' else project['start date']
+                project['end date'] = end_date_input.get().strip() if end_date_input.get().strip() != '' else project['end date']
+                updated = True
+                break  
+        
+        if updated:
+            with open(filename, 'w', newline='') as csvfile:
+                fieldnames = ['title', 'details', 'target', 'start date', 'end date', 'owner']
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(projects)
+            messagebox.showinfo("Success","Project updated successfully")
+        else:
+            messagebox.showerror("Error","Project with title '{}' not found".format(title_input.get()))
 
-        fields = ['title', 'details', 'target', 'start date', 'end date']
-        with open(filename, 'r') as csvfile, tempfile:
-            reader = csv.DictReader(csvfile, fieldnames=fields)
-            writer = csv.DictWriter(tempfile, fieldnames=fields)
-            for row in reader:
-                if row['title'] == str(title_input.get()):
-                    if row['owner'] == user:
-                        print('updating row', row['title'])
-                        row['title'], row['details'], row['target'],row['start date'], row['end date'] = new_title_input.get(), details_input.get(), target_input.get(),start_date_input.get(), end_date_input.get()
-                row = {'title': row['title'], 'details': row['details'], 'target': row['target'], 'start date': row['start date'],'end date': row['end date']}
-                writer.writerow(row)
-        shutil.move(tempfile.name, filename)
 
     edit_label = Label(edit,text="Enter title of project to update:",font=main_font)
     edit_label.place(x="100",y="20")
